@@ -45,7 +45,7 @@
 
 
 # LEGACY to UEFI
-[!WARN]
+[!WARNING]
 
 gparted creer un partition de 512MB fat32
 
