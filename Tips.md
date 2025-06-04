@@ -60,6 +60,7 @@ gparted creer un partition de 512MB fat32
     sudo apt install arch-install-scripts
     genfstab -U -p /media/ROOT >> /media/ROOT/etc/fstab
     cat fstab
+    reboot
 
     
 # GRUB EFI
@@ -74,6 +75,10 @@ gparted creer un partition de 512MB fat32
     sudo mount --bind /run /mnt/run
     modprobe efivars
     sudo chroot /mnt
+    grub-install /dev/sda
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+    update-grub
+    reboot
 
 
 ____________________________________________________________________
@@ -97,7 +102,7 @@ ____________________________________________________________________
     sudo update-grub
 
     
-# Check
+# Check Firm boot type.
     [ -d /sys/firmware/efi ] && echo "UEFI Boot Detected" || echo "Legacy BIOS Boot Detected"
 
   
