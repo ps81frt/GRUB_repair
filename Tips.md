@@ -45,9 +45,9 @@
 
 
 # LEGACY to UEFI
-[!WARNING]
+>[!WARNING]
 
-gparted creer un partition de 512MB fat32
+>gparted creer un partition de 512MB fat32
 
     sudo apt install grub-efi
     cd /media
