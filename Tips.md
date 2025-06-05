@@ -68,7 +68,7 @@
     lsblk
     sudo mount /dev/sda2 /mnt
     sudo mkdir -p /mnt/boot/efi
-    sudo mount /dev/sda3 /mnt/boot/efi
+    sudo mount /dev/sda1 /mnt/boot/efi
     sudo mount --bind /dev /mnt/dev
     sudo mount --bind /proc /mnt/proc
     sudo mount --bind /sys /mnt/sys
