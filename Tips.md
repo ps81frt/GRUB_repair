@@ -68,7 +68,7 @@
     reboot
 
     
-# GRUB EFI
+# GRUB EFI Repair
 
     setxkbmap fr
     sudo apt update
