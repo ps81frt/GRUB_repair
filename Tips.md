@@ -64,7 +64,7 @@
 
     
 # GRUB EFI
-    sudo mkdir /media/distro
+
     lsblk
     sudo mount /dev/sda2 /mnt
     sudo mkdir -p /mnt/boot/efi
