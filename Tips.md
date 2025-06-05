@@ -54,6 +54,8 @@
 > [!WARNING]  
 >gparted creer un partition de 512MB fat32
 
+    setxkbmap fr
+    sudo apt update
     sudo apt install grub-efi
     cd /media
     sudo mkdir ROOT
