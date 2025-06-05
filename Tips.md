@@ -70,6 +70,7 @@
     
 # GRUB EFI
 
+    setxkbmap fr
     sudo apt update
     sudo apt install grub-efi
     lsblk -fe7
