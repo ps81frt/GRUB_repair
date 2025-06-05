@@ -60,7 +60,7 @@
     sudo mkdir EFI
     sudo mount /dev/sda2 /media/ROOT
     sudo mount /dev/sda1 /media/EFI
-    sudo grub-install --target=x86_64-efi /dev/vda --efi-directory=/media/EFI --boot-directory=/    media/ROOT/boot
+    sudo grub-install --target=x86_64-efi /dev/vda --efi-directory=/media/EFI --boot-directory=/media/ROOT/boot
     cd /media/ROOT/etc
     sudo apt install arch-install-scripts
     genfstab -U -p /media/ROOT >> /media/ROOT/etc/fstab
