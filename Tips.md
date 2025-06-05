@@ -83,8 +83,10 @@
     modprobe efivars
     sudo chroot /mnt
     grub-install /dev/sda
-    sudo grub-mkconfig -o /boot/grub/grub.cfg
+    grub-mkconfig -o /boot/grub/grub.cfg
     update-grub
+    exit
+    sudo umount -R /dev/mnt
     reboot
 
 
@@ -103,7 +105,7 @@ ____________________________________________________________________
 >[!NOTE]
 >S'assurer que les image soit au format PNG argb
 
-    echo sudo cp /usr/share/grub/default/grub /etc/default/grub
+    sudo cp /usr/share/grub/default/grub /etc/default/grub
     echo "GRUB_GFXMODE=1920x1080x32,1024x768x32,640x480,auto" | sudo tee -a /etc/default/grub
     echo "GRUB_THEME=\"/boot/grub/theme/ubuntu/theme.txt"\" | sudo tee -a /etc/default/grub
     sed -i 's/GRUB_TIMEOUT=0/GRUB_TIMEOUT=10/g' /etc/default/grub
