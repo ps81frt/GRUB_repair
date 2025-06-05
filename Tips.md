@@ -3,7 +3,7 @@
 # Grub Rescue
 >[!NOTE]
 >ls (hd0)(hd0,gpt1)(hd0,gpt2)
->>admettons gpt2=sda2 et contioent a la suite de (hd0,gpt2)/ les fichier de configuration
+>admettons gpt2=sda2 et contioent a la suite de (hd0,gpt2)/ les fichier de configuration
 
     ls
     ls (hd0,gpt2)/
