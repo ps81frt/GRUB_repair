@@ -95,12 +95,9 @@
 
 ____________________________________________________________________
 
-###### apt-get install grub-efi-amd64
-
-
-
-#### apt-get install grub-efi
-#### apt-get remove grub-pc
+###### apt-get install grub-efi-amd64 << EFI_amd64
+###### apt-get install grub-efi << EFI
+###### apt-get remove grub-pc << LEGACY
 
 
 # GRUB thèmes
