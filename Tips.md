@@ -1,12 +1,16 @@
 
 
 # Grub Rescue
+>[!NOTE]
+>ls (hd0)(hd0,gpt1)(hd0,gpt2)
+>>admettons gpt2=sda2 et contioent a la suite de (hd0,gpt2)/ les fichier de configuration
+
     ls
-    ls (hd0,gpt5)/
-    cat (hd0,gpt5)/etc/issue
-    ls -lh (hd0,gpt5)/boot
-    set prefix=(hd0,gpt5)/boot/grub
-    set root=(hd0,gpt5)
+    ls (hd0,gpt2)/
+    cat (hd0,gpt2)/etc/issue
+    ls -lh (hd0,gpt2)/boot
+    set prefix=(hd0,gpt2)/boot/grub
+    set root=(hd0,gpt2)
     insmod normal
     insmod linux
     linux /boot/vmlinuz-6.2.0-20-generic root=/dev/sda5
