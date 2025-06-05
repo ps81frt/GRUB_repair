@@ -20,7 +20,8 @@
 # Initramfs
     cat /proc/partitions 
     blkid
-    lsblkset prefix
+    lsblk
+    set prefix
     fsck /dev/sda5 -y 
     reboot -f
 
