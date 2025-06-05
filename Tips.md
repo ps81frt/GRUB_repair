@@ -98,6 +98,9 @@ ____________________________________________________________________
 
 # GRUB thèmes
 
+>[!NOTE]
+>S'assurer que les image soit au format PNG argb
+
     echo sudo cp /usr/share/grub/default/grub /etc/default/grub
     echo "GRUB_GFXMODE=1920x1080x32,1024x768x32,640x480,auto" | sudo tee -a /etc/default/grub
     echo "GRUB_THEME=\"/boot/grub/theme/ubuntu/theme.txt"\" | sudo tee -a /etc/default/grub
