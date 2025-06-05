@@ -70,7 +70,8 @@
     
 # GRUB EFI
 
-    lsblk
+    sudo apt install grub-efi
+    lsblk -fe7
     sudo mount /dev/sda2 /mnt
     sudo mkdir -p /mnt/boot/efi
     sudo mount /dev/sda1 /mnt/boot/efi
