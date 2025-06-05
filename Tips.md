@@ -87,7 +87,7 @@
     grub-mkconfig -o /boot/grub/grub.cfg
     update-grub
     exit
-    sudo umount -R /dev/mnt
+    sudo umount -R /mnt
     reboot
 
 
