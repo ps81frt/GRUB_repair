@@ -70,6 +70,7 @@
     
 # GRUB EFI
 
+    sudo apt update
     sudo apt install grub-efi
     lsblk -fe7
     sudo mount /dev/sda2 /mnt
