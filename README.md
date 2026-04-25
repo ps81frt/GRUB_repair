@@ -22,7 +22,8 @@
     blkid
     lsblk
     set prefix
-    fsck /dev/sda5 -y 
+    mount -o remount,ro /root
+    fsck -f /dev/sda3 -y 
     reboot -f
 
 
