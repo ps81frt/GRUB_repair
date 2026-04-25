@@ -18,6 +18,7 @@
     boot
 
 # Initramfs
+    cat /proc/cmdline
     cat /proc/partitions 
     blkid
     lsblk
