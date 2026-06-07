@@ -158,17 +158,19 @@ sudo update-grub
 # Ajouter une entrer.
 
 ```bash
-cat <<EOF | sudo tee -a /etc/grub.d/40_custom
+cat <<EOF | sudo tee /etc/grub.d/40_custom
+#!/bin/sh
+exec tail -n +3 \$0
 
 menuentry 'UEFI Firmware Settings' \$menuentry_id_option 'uefi-firmware' {
     fwsetup
 }
 
-menuentry 'Ubuntu 26.04 (Via 40_custom)' {
+menuentry 'Boot sur Disque SDA (Ubuntu LVM)' {
     insmod part_gpt
-    insmod chain
-    search --no-floppy --fs-uuid --set=root 015f860c-d280-4673-aae6-2fc7ea05f2a4
-    chainloader /boot/grub/grubx64.efi
+    insmod fat
+    search --no-floppy --fs-uuid --set=root B1EE-B883
+    chainloader /EFI/ubuntu/shimx64.efi
 }
 EOF
 
