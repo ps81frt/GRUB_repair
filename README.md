@@ -160,7 +160,7 @@ sudo update-grub
 ```bash
 cat <<EOF | sudo tee /etc/grub.d/40_custom
 #!/bin/sh
-exec tail -n +3 \$0
+exec tail -n +3 "$0"
 
 menuentry 'UEFI Firmware Settings' \$menuentry_id_option 'uefi-firmware' {
     fwsetup
