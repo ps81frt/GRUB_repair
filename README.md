@@ -133,6 +133,15 @@ GRUB_CMDLINE_LINUX=""
 GRUB_ENABLE_UEFI_FIRMWARE_SETUP="true"
 GRUB_DISABLE_OS_PROBER="false"
 EOF
+
+cat <<EOF | sudo tee /etc/grub.d/40_custom
+#!/bin/sh
+exec tail -n +3 \$0
+menuentry 'UEFI Firmware Settings' \$menuentry_id_option 'uefi-firmware' {
+	fwsetup
+}
+EOF
+
 sudo apt update -y
 sudo apt purge --allow-remove-essential memtest86+ -y
 sudo rm -f /var/lib/dpkg/info/memtest86+.*
