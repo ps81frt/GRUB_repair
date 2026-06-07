@@ -155,7 +155,26 @@ sudo dpkg --configure -a
 sudo grub-install --target=x86_64-efi --recheck
 sudo update-grub
 ```
-    
+# Ajouter une entrer.
+
+```bash
+cat <<EOF | sudo tee -a /etc/grub.d/40_custom
+
+menuentry 'UEFI Firmware Settings' \$menuentry_id_option 'uefi-firmware' {
+    fwsetup
+}
+
+menuentry 'Ubuntu 26.04 (Via 40_custom)' {
+    insmod part_gpt
+    insmod chain
+    search --no-floppy --fs-uuid --set=root 015f860c-d280-4673-aae6-2fc7ea05f2a4
+    chainloader /boot/grub/grubx64.efi
+}
+EOF
+
+sudo chmod 755 /etc/grub.d/40_custom
+sudo update-grub
+```
 # Check Firm boot type.
     [ -d /sys/firmware/efi ] && echo "UEFI Boot Detected" || echo "Legacy BIOS Boot Detected"
 
