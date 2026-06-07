@@ -162,15 +162,25 @@ cat <<EOF | sudo tee /etc/grub.d/40_custom
 #!/bin/sh
 exec tail -n +3 "\$0"
 
-menuentry 'UEFI Firmware Settings' \$menuentry_id_option 'uefi-firmware' {
-    fwsetup
+menuentry 'Ubuntu LVM SATA' {
+    insmod part_gpt
+    insmod ext2
+    insmod lvm
+    search --no-floppy --fs-uuid --set=root 3878c45b-c16c-487b-ab3e-9d86052ed184
+    linux /vmlinuz root=/dev/mapper/vg--ubuntu-lv--root ro quiet splash
+    initrd /initrd.img
 }
 
-menuentry 'Boot sur Disque SDA (Ubuntu LVM)' {
+menuentry 'Ubuntu NVMe Btrfs' {
     insmod part_gpt
-    insmod fat
-    search --no-floppy --fs-uuid --set=root B1EE-B883
-    chainloader /EFI/ubuntu/shimx64.efi
+    insmod btrfs
+    search --no-floppy --fs-uuid --set=root 5c52e2d9-af9a-45f9-a047-dc7108494188
+    linux /vmlinuz root=UUID=5c52e2d9-af9a-45f9-a047-dc7108494188 rootfstype=btrfs ro quiet splash
+    initrd /initrd.img
+}
+
+menuentry 'UEFI Firmware Settings' \$menuentry_id_option 'uefi-firmware' {
+    fwsetup
 }
 EOF
 
