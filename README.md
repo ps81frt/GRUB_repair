@@ -179,6 +179,26 @@ menuentry 'Ubuntu NVMe Btrfs' {
     initrd /initrd.img
 }
 
+menuentry 'ISO ubuntu Racoon' {
+    insmod part_gpt
+    insmod ext2
+    insmod lvm
+    insmod loopback
+    insmod iso9660
+    insmod all_video
+    set gfxpayload=keep
+    search --no-floppy --fs-uuid --set=isopart 1d1142a2-d1de-4484-9ee3-03884b6a4c15
+    set iso_path="/cyber/Ressources/isos/X86-64/ubuntu-26.04-desktop-amd64.iso"
+    if [ -f "($isopart)$iso_path" ]; then
+        loopback isoloop ($isopart)$iso_path
+        linux (isoloop)/casper/vmlinuz boot=casper iso-scan/filename=$iso_path quiet splash ---
+        initrd (isoloop)/casper/initrd
+    else
+        echo "Fichier ISO introuvable"
+        sleep 5
+    fi
+}
+
 menuentry 'UEFI Firmware Settings' \$menuentry_id_option 'uefi-firmware' {
     fwsetup
 }
