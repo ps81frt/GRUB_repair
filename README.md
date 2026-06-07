@@ -115,6 +115,35 @@ ____________________________________________________________________
     sudo grub-mkconfig -o /boot/grub/grub.cfg
     sudo update-grub
 
+
+# Reinstall grub après une purge.
+
+
+```bash
+sudo rm -f /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock
+sudo mkdir -p /etc/grub.d
+sudo mv /etc/default/grub /etc/default/grub.bak
+cat <<EOF | sudo tee /etc/default/grub
+GRUB_DEFAULT=0
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=0
+GRUB_DISTRIBUTOR=\`lsb_release -i -s 2> /dev/null || echo Debian\`
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+GRUB_CMDLINE_LINUX=""
+EOF
+sudo apt update -y
+sudo apt purge --allow-remove-essential memtest86+ -y
+sudo rm -f /var/lib/dpkg/info/memtest86+.*
+sudo dpkg --remove --force-all memtest86+
+sudo apt purge --allow-remove-essential grub-common grub2-common grub-efi-amd64-bin grub-efi-amd64-signed shim-signed -y
+sudo apt install --reinstall -y grub-common grub2-common grub-efi-amd64-bin grub-efi-amd64-signed shim-signed efibootmgr
+sudo find /etc/grub.d/ -type f -not -name "00_header" -not -name "10_linux" -not -name "20_linux_xen" -not -name "30_os-prober" -not -name "40_custom" -not -name "41_custom" -delete
+sudo chmod 755 /etc/grub.d/*
+sudo apt -f install -y
+sudo dpkg --configure -a
+sudo grub-install --target=x86_64-efi --recheck
+sudo update-grub
+```
     
 # Check Firm boot type.
     [ -d /sys/firmware/efi ] && echo "UEFI Boot Detected" || echo "Legacy BIOS Boot Detected"
