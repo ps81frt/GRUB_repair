@@ -125,11 +125,13 @@ sudo mkdir -p /etc/grub.d
 sudo mv /etc/default/grub /etc/default/grub.bak
 cat <<EOF | sudo tee /etc/default/grub
 GRUB_DEFAULT=0
-GRUB_TIMEOUT_STYLE=hidden
-GRUB_TIMEOUT=0
+GRUB_TIMEOUT_STYLE=menu
+GRUB_TIMEOUT=10
 GRUB_DISTRIBUTOR=\`lsb_release -i -s 2> /dev/null || echo Debian\`
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+GRUB_CMDLINE_LINUX_DEFAULT="splash"
 GRUB_CMDLINE_LINUX=""
+GRUB_ENABLE_UEFI_FIRMWARE_SETUP="true"
+GRUB_DISABLE_OS_PROBER="false"
 EOF
 sudo apt update -y
 sudo apt purge --allow-remove-essential memtest86+ -y
