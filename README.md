@@ -167,7 +167,7 @@ menuentry 'Ubuntu LVM SATA' {
     insmod ext2
     insmod lvm
     search --no-floppy --fs-uuid --set=root 3878c45b-c16c-487b-ab3e-9d86052ed184
-    linux /vmlinuz root=/dev/mapper/vg--ubuntu-lv--root ro quiet splash
+    linux /vmlinuz root=/dev/mapper/vg--ubuntu-lv--root rootfstype=ext4 ro quiet splash
     initrd /initrd.img
 }
 
