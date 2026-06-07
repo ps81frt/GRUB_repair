@@ -177,6 +177,12 @@ EOF
 sudo chmod 755 /etc/grub.d/40_custom
 sudo update-grub
 ```
+
+# Ajouter entrées EFIBOOTMGR
+
+```bash
+sudo efibootmgr -c -d /dev/sda -p 1 -L "Ubuntu-SATA" -l "/EFI/ubuntu/shimx64.efi"
+```
 # Check Firm boot type.
     [ -d /sys/firmware/efi ] && echo "UEFI Boot Detected" || echo "Legacy BIOS Boot Detected"
 
